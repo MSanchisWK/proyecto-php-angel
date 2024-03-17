@@ -1,9 +1,9 @@
 <?php
 
 $host = "localhost"; 
-$dbname = "nombre_de_la_base_de_datos";
-$username = "nombre_de_usuario";
-$password = "contraseña";
+$dbname = "proyecto";
+$username = "root";
+$password = "";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

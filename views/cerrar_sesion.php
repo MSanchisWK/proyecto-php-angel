@@ -1,8 +1,0 @@
-<?php
-session_start();
-
-header("location:../index.php");
-exit();
-session_destroy();
-
-?>
