@@ -1,3 +1,11 @@
+<?php
+require_once '../controllers/citas.controller.php';
+session_start();
+if (!$_SESSION['userId'] || !$_SESSION['admin']) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <html>
 <head>
     <meta charset="UTF-8">

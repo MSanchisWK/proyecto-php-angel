@@ -1,12 +1,12 @@
 <?php
+require_once '../controllers/users.controller.php';
+session_start();
 if (!$_SESSION['userId']) {
     header("Location: index.php");
     exit();
 }
-require_once '../controllers/UsuariosController.php';
-require_once '../connection.php';
-$usuariosController = new UsuariosController($db);
-$usuario = $usuariosController->obtenerDatosUsuario($_SESSION['userId']); 
+$usuariosController = new UsuariosController();
+$usuario = $usuariosController->obtenerUsuarioPorId($_SESSION['userId']); 
 $mensaje = '';
 ?>
 
@@ -36,8 +36,6 @@ $mensaje = '';
             <input type="date" name="fecha_nacimiento" value="<?php echo $usuario['fecha_nacimiento']; ?>" required><br>
             <label>Dirección:</label>
             <input type="text" name="direccion" value="<?php echo $usuario['direccion']; ?>" required><br>
-            <label>Nombre de Usuario:</label>
-            <input type="text" name="username" value="<?php echo $usuario['username']; ?>" readonly><br>
             <label>Contraseña:</label>
             <input type="password" name="password" placeholder="Nueva contraseña"><br>
             <input type="submit" value="Guardar Cambios">

@@ -1,5 +1,4 @@
 <?php 
-session_start();
 $basepath='/apps/proyecto';
 $usuario_autenticado = isset($_SESSION['userId']);
 $es_administrador = false;
@@ -17,7 +16,7 @@ if(isset($_SESSION['userId'])){
                 <?php
                 if ($usuario_autenticado) {
                     echo '<li><a href="'.$basepath.'/views/perfil.php">Perfil</a></li>';
-                    echo '<li><a href="'.$basepath.'/citaciones.php">Citaciones</a></li>';
+                    echo '<li><a href="'.$basepath.'/views/citaciones.php">Citaciones</a></li>';
                     if ($es_administrador) {
                         echo '<li><a href="'.$basepath.'/views/admin/list_usuarios.php">USUARIOS-ADMINISTRACION</a></li>';
                         echo '<li><a href="'.$basepath.'/views/admin/list_citas.php">CITACIONES-ADMINISTRACION</a></li>';

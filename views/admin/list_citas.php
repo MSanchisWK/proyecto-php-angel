@@ -1,3 +1,11 @@
+<?php
+require_once '../controllers/citas.controller.php';
+session_start();
+if (!$_SESSION['userId'] || !$_SESSION['admin']) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +18,7 @@
 <body>
     <?php include 'navbar.php'; ?>
     <div>
-        <a href="add_cita.php">Agregar cita</a>
+        <a href="./add_cita.php">Agregar cita</a>
     </div> 
     <table> 
     <?php

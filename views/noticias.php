@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../controllers/noticias.controller.php';
 $noticiasController = new NoticiasController();
 $noticias = $noticiasController->obtenerTodasLasNoticias();
@@ -16,7 +17,6 @@ $noticias = $noticiasController->obtenerTodasLasNoticias();
 <body>
     <?php include 'navbar.php'; ?>
     <h1 class="center">Noticias</h1>
-    <h3 class="center"><a href="add_noticia.php">Agregar noticia</a></h3>
     <table> 
     <?php foreach ($noticias as $noticia) { ?>
         <tr>

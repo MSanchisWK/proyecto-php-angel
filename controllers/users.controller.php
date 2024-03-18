@@ -53,11 +53,6 @@ class UsuariosController {
     public function eliminarUsuario($id) {
         return $this->usuariosModel->deleteUser($id);
     }
-    public function cerrarSesion(){
-        header("location:../index.php");
-        exit();
-        session_destroy();
-    }
     public function iniciarSesion($usuario, $password) {
         $user = $this->usuariosModel->getUserByCredentials($usuario, $password);
         if ($user) {

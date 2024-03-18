@@ -1,3 +1,11 @@
+<?php
+session_start();
+require_once '../controllers/citas.controller.php';
+if (!$_SESSION['userId']) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,8 +17,8 @@
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <h1 align="center">Gestión de Citaciones</h1>
-    <h2>Solicitar Cita</h2>
+    <h1 class="center">Gestión de Citaciones</h1>
+    <h2 class="center">Solicitar Cita</h2>
     <form action="procesar_cita.php" method="POST">
         <label>Fecha de Cita:</label>
         <input type="date" name="fecha_cita" required>
@@ -20,9 +28,7 @@
             <input type="submit" value="Solicitar Cita">
         </div>
     </form>
-
-    <!-- Listado de citas planificadas -->
-    <h2>Mis Citas Planificadas</h2>
+    <h2 class="center">Mis Citas Planificadas</h2>
     <table>
         <tr>
             <th>Fecha de Cita</th>
@@ -30,9 +36,7 @@
             <th>Acciones</th>
         </tr>
         <?php
-        require_once 'CitasController.php';
-        require_once 'connection.php';
-        $citasController = new CitasController($db);
+        $citasController = new CitasController();
         $citas = $citasController->obtenerTodasLasCitas();
         foreach ($citas as $cita) {
             echo '<tr>';

@@ -1,3 +1,11 @@
+<?php
+require_once '../controllers/noticias.controller.php';
+session_start();
+if (!$_SESSION['userId'] || !$_SESSION['admin']) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
