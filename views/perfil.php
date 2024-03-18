@@ -8,6 +8,10 @@ if (!$_SESSION['userId']) {
 $usuariosController = new UsuariosController();
 $usuario = $usuariosController->obtenerUsuarioPorId($_SESSION['userId']); 
 $mensaje = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $mensaje = $usuariosController->actualizarUsuario($_SESSION['userId']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +21,7 @@ $mensaje = '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="../css/estilo_plantilla.css" TYPE="text/css">
-    <link rel="styform-grouplesheet" href="../css/menu.css" TYPE="text/css">
+    <link rel="stylesheet" href="../css/menu.css" TYPE="text/css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>

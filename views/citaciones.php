@@ -5,6 +5,11 @@ if (!$_SESSION['userId']) {
     header("Location: index.php");
     exit();
 }
+$citasController = new CitasController();
+$citas = $citasController->obtenerCitasDeUsuario($_SESSION['userId']);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $mensaje = $citasController->crearCita($_SESSION['userId'],$_POST['fecha_cita'],$_POST['motivo_cita']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,7 +24,7 @@ if (!$_SESSION['userId']) {
     <?php include 'navbar.php'; ?>
     <h1 class="center">Gestión de Citaciones</h1>
     <h2 class="center">Solicitar Cita</h2>
-    <form action="procesar_cita.php" method="POST">
+    <form action="" method="POST">
         <label>Fecha de Cita:</label>
         <input type="date" name="fecha_cita" required>
         <label>Motivo de la Cita:</label>
@@ -33,20 +38,12 @@ if (!$_SESSION['userId']) {
         <tr>
             <th>Fecha de Cita</th>
             <th>Motivo de la Cita</th>
-            <th>Acciones</th>
         </tr>
-        <?php
-        $citasController = new CitasController();
-        $citas = $citasController->obtenerTodasLasCitas();
+        <?php  
         foreach ($citas as $cita) {
             echo '<tr>';
             echo '<td>' . $cita['fecha_cita'] . '</td>';
             echo '<td>' . $cita['motivo_cita'] . '</td>';
-            if (strtotime($cita['fecha_cita']) > time()) {
-                echo '<td><a href="modificar_cita.php?id=' . $cita['idCita'] . '">Modificar</a> | <a href="eliminar_cita.php?id=' . $cita['idCita'] . '">Eliminar</a></td>';
-            } else {
-                echo '<td>Cita realizada</td>';
-            }
             echo '</tr>';
         }
         ?>

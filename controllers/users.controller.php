@@ -46,8 +46,24 @@ class UsuariosController {
         $this->iniciarSesion($_POST['usuario'], $_POST['password']);
     }
 
-    public function actualizarUsuario($id, $userData) {
-        return $this->usuariosModel->updateUser($id, $userData);
+    public function actualizarUsuario($id) {
+        $userData = array(
+            'nombre' => $_POST['nombre'],
+            'apellidos' => $_POST['apellidos'],
+            'email' => $_POST['email'],
+            'telefono' => $_POST['telefono'],
+            'fecha_nacimiento' => $_POST['fecha_nacimiento'],
+            'direccion' => $_POST['direccion']
+        );
+        if (!empty($_POST['password'])) {
+            $userData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        }
+        $resultado = $this->usuariosModel->updateUser($id, $userData);
+        if ($resultado) {
+            return "Usuario actualizado correctamente.";
+        } else {
+            return "Error al actualizar el usuario. Por favor, inténtelo de nuevo.";
+        }
     }
 
     public function eliminarUsuario($id) {

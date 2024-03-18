@@ -21,6 +21,15 @@ class CitasModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    
+    public function getCitaByUser($id) {
+        $query = "SELECT * FROM citas WHERE idUser = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function crearCita($idUsuario, $fecha, $motivo) {
         $query = "INSERT INTO citas (idUser, fecha_cita, motivo_cita)
                   VALUES (:idUser, :fecha_cita, :motivo_cita)";

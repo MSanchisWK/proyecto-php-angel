@@ -15,6 +15,10 @@ class CitasController {
         return $this->citasModel->getCitas();
     }
 
+    public function obtenerCitasDeUsuario($id) {
+        return $this->citasModel->getCitaByUser($id);
+    }
+
     public function obtenerCitaPorId($id) {
         return $this->citasModel->getCitaById($id);
     }

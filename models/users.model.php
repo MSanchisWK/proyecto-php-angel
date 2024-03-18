@@ -77,7 +77,7 @@ class UsersModel {
     public function updateUser($id, $userData) {
         $query = "UPDATE users_data SET nombre = :nombre, apellidos = :apellidos, email = :email, 
                   telefono = :telefono, fecha_nacimiento = :fecha_nacimiento, direccion = :direccion, sexo = :sexo
-                  WHERE id = :id";
+                  WHERE idUser = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':nombre', $userData['nombre']);
