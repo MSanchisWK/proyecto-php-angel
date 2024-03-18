@@ -7,7 +7,11 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     exit();
 }
 $usuariosController = new UsuariosController();
+$noticiasController = new NoticiasController();
 $usuarios = $usuariosController->obtenerTodosLosUsuarios();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $noticiasController->crearNoticia($_POST['titulo'], "", $_POST['texto'], $_POST['fecha'], $_POST['idUser']);
+}
 ?>
 <!DOCTYPE html>
 <html>

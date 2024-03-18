@@ -5,6 +5,11 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     header("Location: index.php");
     exit();
 }
+$mensaje = "";
+$usuariosController = new UsuariosController(); 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $mensaje = $usuariosController->registrarUsuario();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,6 +37,8 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
             <input type="date" name="fecha_nacimiento" required>
             <label>Dirección:</label>
             <input type="text" name="direccion" required>
+            <label>Contraseña</label>
+            <input type="password" name="password">
             <label>Sexo:</label>
             <select name="sexo" required>
                 <option value="Masculino">Masculino</option>
@@ -47,6 +54,7 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
                 <input type="submit" value="Agregar usuario">
             </div>
         </form>
+        <p><?php echo $mensaje; ?></p>
     </div>
     <?php include 'footer.php'; ?>
 </body>

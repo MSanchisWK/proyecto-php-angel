@@ -7,7 +7,11 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     exit();
 }
 $usersController = new UsuariosController();
+$citasController = new CitasController();
 $users = $usersController->obtenerTodosLosUsuarios();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   $citasController->crearCita($_POST['idUser'], $_POST['fecha_cita'], $_POST['motivo_cita']);
+}
 ?>
 <html>
 <head>
