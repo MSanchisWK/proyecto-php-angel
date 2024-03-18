@@ -17,11 +17,11 @@ $mensaje = '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="../css/estilo_plantilla.css" TYPE="text/css">
-    <link rel="stylesheet" href="../css/menu.css" TYPE="text/css">
+    <link rel="styform-grouplesheet" href="../css/menu.css" TYPE="text/css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <h1 align="center">Perfil de Usuario</h1>
+    <h1 class="center">Perfil de Usuario</h1>
     <div>
         <form action="" method="POST">
             <label>Nombre:</label>
@@ -38,7 +38,7 @@ $mensaje = '';
             <input type="text" name="direccion" value="<?php echo $usuario['direccion']; ?>" required><br>
             <label>Contraseña:</label>
             <input type="password" name="password" placeholder="Nueva contraseña"><br>
-            <input type="submit" value="Guardar Cambios">
+            <div class="enviar"><input type="submit" value="Guardar Cambios"></div>
         </form>
         <div><?php echo $mensaje; ?></div>
     </div>

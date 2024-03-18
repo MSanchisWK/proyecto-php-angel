@@ -34,12 +34,8 @@ footer p{
 }
 
 form {
-    height: 100%;
-    margin: 0 auto;
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .inline-fields {
@@ -67,6 +63,12 @@ form {
 
 .center{
     text-align: center;
+}
+
+.enviar{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table{

@@ -18,9 +18,9 @@ if(isset($_SESSION['userId'])){
                     echo '<li><a href="'.$basepath.'/views/perfil.php">Perfil</a></li>';
                     echo '<li><a href="'.$basepath.'/views/citaciones.php">Citaciones</a></li>';
                     if ($es_administrador) {
-                        echo '<li><a href="'.$basepath.'/views/admin/list_usuarios.php">USUARIOS-ADMINISTRACION</a></li>';
-                        echo '<li><a href="'.$basepath.'/views/admin/list_citas.php">CITACIONES-ADMINISTRACION</a></li>';
-                        echo '<li><a href="'.$basepath.'/views/admin/list_noticias.php">NOTICIAS-ADMINISTRACION</a></li>';
+                        echo '<li><a href="'.$basepath.'/views/list_usuarios.php">USUARIOS-ADMINISTRACION</a></li>';
+                        echo '<li><a href="'.$basepath.'/views/list_citas.php">CITACIONES-ADMINISTRACION</a></li>';
+                        echo '<li><a href="'.$basepath.'/views/list_noticias.php">NOTICIAS-ADMINISTRACION</a></li>';
                     }
                     echo '<li><a href="'.$basepath.'/index.php?cs=1">Cerrar Sesión</a></li>';
                 } else {

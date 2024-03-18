@@ -1,10 +1,13 @@
 <?php
 require_once '../controllers/noticias.controller.php';
+require_once '../controllers/users.controller.php';
 session_start();
 if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     header("Location: index.php");
     exit();
 }
+$usuariosController = new UsuariosController();
+$usuarios = $usuariosController->obtenerTodosLosUsuarios();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,12 +15,12 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias - ADMIN</title>
-    <link rel="stylesheet" href="../css/estilo_plantilla.css" TYPE="text/css">
-    <link rel="stylesheet" href="../css/menu.css" TYPE="text/css">
+    <link rel="stylesheet" href="../css/estilo_plantilla.css" type="text/css">
+    <link rel="stylesheet" href="../css/menu.css" type="text/css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <h1 align="center">Agregar noticia</h1>
+    <h1 class="center">Agregar noticia</h1>
     <form action="" method="POST">
         <label>Titulo:</label>
         <input type="text" name="titulo" required>
@@ -26,21 +29,17 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
         <label>Texto:</label>
         <textarea name="texto" required></textarea>
         <label>Imagen:</label>
-        <input type="text" name="imagen" required>
+        <input type="file" name="imagen">
+        <label>Usuario:</label>
         <?php
-        require_once 'UsuariosController.php';
-        require_once 'connection.php';
-        $usuariosController = new UsuariosController($db);
-        $usuarios = $usuariosController->obtenerTodosLosUsuarios();
         echo "<select name='idUser'>";
         foreach ($usuarios as $usuario) {
-            echo "<option value='".$usuario['idUser']."'>".$usuario['usuario']."</option>";
+            echo "<option value='".$usuario['idUser']."'>".$usuario['nombre']."</option>";
         }
         echo "</select>";
         ?>
-        <div align="center">
+        <div class="enviar">
             <input type="submit" value="Agregar noticia">
-            <a href="administracion_noticias.php">Regresar</a>
         </div>
     </form>
     <?php include 'footer.php'; ?>

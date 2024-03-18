@@ -17,30 +17,31 @@ $noticias = $noticiasController->obtenerTodasLasNoticias();
 <body>
     <?php include 'navbar.php'; ?>
     <h1 class="center">Noticias</h1>
-    <table> 
+
     <?php foreach ($noticias as $noticia) { ?>
-        <tr>
-            <td>Título:</td>
-            <td><?php echo $noticia['titulo']; ?></td>
-        </tr>
-        <tr>
-            <td>Fecha de Publicación:</td>
-            <td><?php echo $noticia['fecha']; ?></td>
-        </tr>
-        <tr>
-            <td>Texto de la Noticia:</td>
-            <td><?php echo $noticia['texto']; ?></td>
-        </tr>
-        <tr>
-            <td>Foto de la Noticia:</td>
-            <td><img src="<?php echo $noticia['imagen']; ?>" alt="Imagen de la Noticia" width="200"></td>
-        </tr>
-        <tr>
-            <td>Nombre del Usuario:</td>
-            <td><?php echo $noticia['nombre_usuario']; ?></td>
-        </tr>
+        <table> 
+            <tr>
+                <th>Título:</th>
+                <td><?php echo $noticia['titulo']; ?></td>
+            </tr>
+            <tr>
+                <th>Fecha de Publicación:</th>
+                <td><?php echo $noticia['fecha']; ?></td>
+            </tr>
+            <tr>
+                <th>Texto de la Noticia:</th>
+                <td><?php echo $noticia['texto']; ?></td>
+            </tr>
+            <tr>
+                <th>Foto de la Noticia:</th>
+                <td><img src="<?php echo $noticia['imagen']; ?>" alt="Imagen de la Noticia" width="200"></td>
+            </tr>
+            <tr>
+                <th>Nombre del Usuario:</th>
+                <td><?php echo $noticia['nombre_usuario']; ?></td>
+            </tr>
+        </table>  
     <?php } ?>
-    </table>  
     <?php include 'footer.php'; ?>
 </body>
 </html>

@@ -5,6 +5,8 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     header("Location: index.php");
     exit();
 }
+$noticiasController = new NoticiasController();
+$noticias = $noticiasController->obtenerTodasLasNoticias();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,21 +19,21 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
 </head>	
 <body>
     <?php include 'navbar.php'; ?>
-    <div>
-        <a href="./add_noticia.php">Agregar noticia</a>
-    </div> 
+    <h5 class="center"><a href="./add_noticia.php">Agregar noticia</a></h5>
     <table> 
+    <tr>
+        <th>Titulo</th>
+        <th>Fecha</th>
+        <th>Texto</th>
+        <th>Usuario</th>
+    </tr>
     <?php
-    require_once 'NoticiasController.php';
-    require_once 'connection.php';
-    $noticiasController = new NoticiasController($db);
-    $noticias = $noticiasController->obtenerTodasLasNoticias();
     foreach($noticias as $noticia) {  
-        echo '<tr><td>Titulo:</td><td>'.$noticia['titulo'].'</td></tr>';
-        echo '<tr><td>Fecha:</td><td>'.$noticia['fecha'].'</td></tr>';
-        echo '<tr><td>Texto:</td><td>'.$noticia['texto'].'</td></tr>';
-        echo '<tr><td>Imagen:</td><td>'.$noticia['imagen'].'</td></tr>';
-        echo '<tr><td>Usuario:</td><td>'.$noticia['usuario'].'</td></tr>';
+        echo '<tr><td>'.$noticia['titulo'].'</td>';
+        echo '<td>'.$noticia['fecha'].'</td>';
+        echo '<td>'.$noticia['texto'].'</td>';
+        echo '<td>'.$noticia['imagen'].'</td>';
+        echo '<td>'.$noticia['nombre_usuario'].'</td></tr>';
     }
     ?>
     </table>  

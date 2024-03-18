@@ -5,6 +5,8 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     header("Location: index.php");
     exit();
 }
+$citasController = new CitasController();
+$citas = $citasController->obtenerTodasLasCitas();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,19 +19,18 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
 </head> 
 <body>
     <?php include 'navbar.php'; ?>
-    <div>
-        <a href="./add_cita.php">Agregar cita</a>
-    </div> 
+    <h5 class="center"><a href="./add_cita.php">Agregar cita</a></h5>
     <table> 
+    <tr>
+        <th>Usuario</th>
+        <th>Fecha de cita</th>
+        <th>Motivo</th>
+    </tr>
     <?php
-    require_once 'CitasController.php';
-    require_once 'connection.php';
-    $citasController = new CitasController($db);
-    $citas = $citasController->obtenerTodasLasCitas();
     foreach($citas as $cita) {  
-        echo '<tr><td>Usuario:</td><td>'.$cita['idUser'].'</td></tr>';
-        echo '<tr><td>Fecha de cita:</td><td>'.$cita['fecha_cita'].'</td></tr>';
-        echo '<tr><td>Motivo:</td><td>'.$cita['motivo_cita'].'</td></tr>';
+        echo '<tr><td>'.$cita['idUser'].'</td>';
+        echo '<td>'.$cita['fecha_cita'].'</td>';
+        echo '<td>'.$cita['motivo_cita'].'</td></tr>';
     }
     ?>
     </table>  
