@@ -1,12 +1,12 @@
 <?php
-
-require_once 'NoticiasModel.php';
-
+require_once '../models/noticias.model.php';
+require_once '../connection.php';
 class NoticiasController {
     private $noticiasModel;
 
-    public function __construct($db) {
-        $this->noticiasModel = new NoticiasModel($db);
+    public function __construct() {
+        $connection = new Connection();
+        $this->noticiasModel = new NoticiasModel($connection->getConnection());
     }
 
     public function obtenerTodasLasNoticias() {
@@ -22,10 +22,10 @@ class NoticiasController {
     }
 
     public function actualizarNoticia($idNoticia, $titulo, $imagen, $texto, $fecha, $idUsuario) {
-        // Implementa la lógica para actualizar una noticia
+       
     }
 
     public function eliminarNoticia($idNoticia) {
-        // Implementa la lógica para eliminar una noticia
+        
     }
 }

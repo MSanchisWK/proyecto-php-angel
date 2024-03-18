@@ -1,12 +1,14 @@
 <?php
 
-require_once 'CitasModel.php';
+require_once '../models/citas.model.php';
+require_once '../connection.php';
 
 class CitasController {
     private $citasModel;
 
-    public function __construct($db) {
-        $this->citasModel = new CitasModel($db);
+    public function __construct() {
+        $connection = new Connection();
+        $this->citasModel = new CitasModel($connection->getConnection());
     }
 
     public function obtenerTodasLasCitas() {
@@ -22,10 +24,10 @@ class CitasController {
     }
 
     public function actualizarCita($idCita, $idUsuario, $fecha, $motivo) {
-        // Implementa la lógica para actualizar una cita
+       
     }
 
     public function eliminarCita($idCita) {
-        // Implementa la lógica para eliminar una cita
+       
     }
 }

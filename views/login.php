@@ -1,5 +1,13 @@
 <?php
-require_once "../connection.php";
+require_once "../controllers/users.controller.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuariosController = new UsuariosController();
+    $usuariosController->iniciarSesion($_POST['usuario'],  $_POST['password']);
+}
+$mensaje = "";
+if(isset($_GET['error'])){
+    $mensaje = 'Usuario o contraseña incorrectos';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,8 +15,8 @@ require_once "../connection.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-	<link rel="stylesheet" href="../css/estilo_plantilla.css" TYPE="text/css">
-    <link rel="stylesheet" href="../css/menu.css" TYPE="text/css">	
+	<link rel="stylesheet" href="../css/estilo_plantilla.css" type="text/css">
+    <link rel="stylesheet" href="../css/menu.css" type="text/css">	
 </head>
 <body>
     <?php include 'navbar.php'; ?>
@@ -19,24 +27,15 @@ require_once "../connection.php";
             <div class="form-group <?php echo (!empty($usuario_err)) ? 'has-error' : ''; ?>">
                 <label>Usuario</label>
                 <input type="text" name="usuario" class="form-control">
-                <span class="help-block"><?php echo $usuario_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Contraseña</label>
                 <input type="password" name="password" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Seleccione rol</label> 
-                <select class="form-control" name="rol">
-                    <option value="" selected="selected"> </option>
-                    <option value="admin">admin</option>  
-                    <option value="user">user</option>
-                </select>
-            </div>           
+            </div>  
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Inicia sesion">
             </div>
+            <div><?php echo $mensaje; ?></div>
             <p>¿No tienes una cuenta? <a href="registro.php">Regístrate ahora</a>.</p>
         </form>
     </main>

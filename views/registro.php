@@ -1,3 +1,13 @@
+<?php 
+require_once "../connection.php";   
+require_once '../controllers/users.controller.php';
+$usuariosController = new UsuariosController();
+$mensaje = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $mensaje = $usuariosController->registrarUsuario();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +22,7 @@
     <div class="wrapper">
         <h2>Registro</h2>
         <p>Por favor complete este formulario para crear una cuenta.</p>
-        <form action="" method="post">
+        <form action="" method="post" name="user">
             <div>
                 <label>Nombre</label>
                 <input type="text" name="nombre" required>
@@ -61,17 +71,16 @@
             <br>    
             <div>
                 <label>Contraseña</label>
-                <input type="text" name="password">
+                <input type="password" name="password">
             </div>
             <br>
             <div>
-            <label>Rol</label>
-            <select class="form-control" name="rol">
-                <option value="" selected>Selecccione rol</option>
-                <option value="admin">Admin</option>  
-                <option value="user">Usuario</option> 
-            </select>
-            <span class="help-block"><?php echo $password_err; ?></span>
+                <label>Rol</label>
+                <select class="form-control" name="rol">
+                    <option value="" selected>Selecccione rol</option>
+                    <option value="admin">Admin</option>  
+                    <option value="user">Usuario</option> 
+                </select>
             </div>           
             </div>
             <br>
@@ -79,6 +88,7 @@
                 <input type="submit" class="btn btn-primary" value="Registrarse">
             </div>
             <br>
+            <div><?php echo $mensaje; ?></div>
             <p align="center">¿Ya tienes una cuenta? <a href="login.php">Inicia sesion aquí</a></p> 
         </form>
         

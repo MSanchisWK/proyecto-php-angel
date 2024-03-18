@@ -1,15 +1,22 @@
 <?php
+class Connection {
 
-$host = "localhost"; 
-$dbname = "proyecto";
-$username = "root";
-$password = "";
+private $host = "localhost"; 
+private $dbname = "proyecto";
+private $username = "root";
+private $password = "";
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->exec("SET NAMES utf8");
-    return $pdo;
-} catch (PDOException $e) {
-    die("Error de conexión a la base de datos: " . $e->getMessage());
+public function __construct() {}
+
+function getConnection() {
+    try {
+        $db = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->exec("SET NAMES utf8");
+        return $db;
+    } catch (PDOException $e) {
+        die("Error de conexión a la base de datos: " . $e->getMessage());
+    }
+}
+
 }

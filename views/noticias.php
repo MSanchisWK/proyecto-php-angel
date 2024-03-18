@@ -1,7 +1,6 @@
 <?php
-require_once '../connection.php';
-require_once '../controllers/NoticiasController.php';
-$noticiasController = new NoticiasController($db);
+require_once '../controllers/noticias.controller.php';
+$noticiasController = new NoticiasController();
 $noticias = $noticiasController->obtenerTodasLasNoticias();
 ?>
 
@@ -16,10 +15,8 @@ $noticias = $noticiasController->obtenerTodasLasNoticias();
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <h1 align="center">Noticias</h1>
-    <div>
-        <a href="add_noticia.php">Agregar noticia</a>
-    </div> 
+    <h1 class="center">Noticias</h1>
+    <h3 class="center"><a href="add_noticia.php">Agregar noticia</a></h3>
     <table> 
     <?php foreach ($noticias as $noticia) { ?>
         <tr>
@@ -40,7 +37,7 @@ $noticias = $noticiasController->obtenerTodasLasNoticias();
         </tr>
         <tr>
             <td>Nombre del Usuario:</td>
-            <td><?php echo $noticia['usuario']; ?></td>
+            <td><?php echo $noticia['nombre_usuario']; ?></td>
         </tr>
     <?php } ?>
     </table>  

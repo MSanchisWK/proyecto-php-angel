@@ -8,10 +8,14 @@ class NoticiasModel {
     }
 
     public function getNoticias() {
-        $query = "SELECT * FROM noticias";
+        $query = "SELECT n.*, u.nombre AS nombre_usuario 
+                  FROM noticias n 
+                  INNER JOIN users_data u ON n.idUser = u.idUser 
+                  ORDER BY n.idUser DESC"; 
         $result = $this->db->query($query);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     public function getNoticiaById($id) {
         $query = "SELECT * FROM noticias WHERE idNoticia = :id";

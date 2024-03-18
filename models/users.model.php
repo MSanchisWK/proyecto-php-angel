@@ -1,5 +1,5 @@
 <?php
-
+require_once '../connection.php';
 class UsersModel {
     private $db;
 
@@ -20,12 +20,28 @@ class UsersModel {
     }
 
     public function getUserById($id) {
-        $query = "SELECT * FROM users_data WHERE id = :id";
+        $query = "SELECT * FROM users_data WHERE idUser = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getUserByCredentials($usuario, $password) {
+        $query = "SELECT * FROM users_login WHERE usuario = :usuario";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':usuario', $usuario);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                return $user;
+            }
+        }
+        return false;
+    }
+    
 
     public function createUser($userData, $loginData) {
         // Insertar datos en la tabla users_data
