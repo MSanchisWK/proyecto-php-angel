@@ -42,12 +42,13 @@ class CitasModel {
         return $this->db->lastInsertId();
     }
 
-    public function updateCita($id, $fecha, $motivo) {
-        $query = "UPDATE citas SET fecha_cita = :fecha_cita, motivo_cita = :motivo_cita WHERE idCita = :id";
+    public function updateCita($id, $idUser, $fecha, $motivo) {
+        $query = "UPDATE citas SET fecha_cita = :fecha_cita, motivo_cita = :motivo_cita, idUser = :idUser WHERE idCita = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':fecha_cita', $fecha);
         $stmt->bindParam(':motivo_cita', $motivo);
+        $stmt->bindParam(':idUser', $idUser);
         return $stmt->execute();
     }
 

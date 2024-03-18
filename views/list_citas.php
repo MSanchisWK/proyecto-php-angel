@@ -6,6 +6,9 @@ if (!$_SESSION['userId'] || !$_SESSION['admin']) {
     exit();
 }
 $citasController = new CitasController();
+if(isset($_GET['del'])){
+    $citasController->eliminarCita($_GET['del']);
+}
 $citas = $citasController->obtenerTodasLasCitas();
 ?>
 <!DOCTYPE html>
@@ -25,12 +28,16 @@ $citas = $citasController->obtenerTodasLasCitas();
         <th>Usuario</th>
         <th>Fecha de cita</th>
         <th>Motivo</th>
+        <th>Borrar</th>
+        <th>Editar</th>
     </tr>
     <?php
     foreach($citas as $cita) {  
         echo '<tr><td>'.$cita['idUser'].'</td>';
         echo '<td>'.$cita['fecha_cita'].'</td>';
-        echo '<td>'.$cita['motivo_cita'].'</td></tr>';
+        echo '<td>'.$cita['motivo_cita'].'</td>';
+        echo '<td><a href="./list_citas.php?del='.$cita['idCita'].'">Borrar</a></td>';
+        echo '<td><a href="./add_cita.php?edit='.$cita['idCita'].'">Editar</a></td></tr>';
     }
     ?>
     </table>  

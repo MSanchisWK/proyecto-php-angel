@@ -7,8 +7,16 @@ if (!$_SESSION['userId']) {
 }
 $citasController = new CitasController();
 $citas = $citasController->obtenerCitasDeUsuario($_SESSION['userId']);
+$mensaje='';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mensaje = $citasController->crearCita($_SESSION['userId'],$_POST['fecha_cita'],$_POST['motivo_cita']);
+    $hoy = date('Y-m-d'); 
+    if ($_POST['fecha_cita'] < $hoy) {
+        $mensaje = "La fecha de la cita no puede ser anterior a hoy.";
+    }  
+    else {
+        $mensaje = $citasController->crearCita($_SESSION['userId'],$_POST['fecha_cita'],$_POST['motivo_cita']);
+    }
+   
 }
 ?>
 <!DOCTYPE html>
@@ -33,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" value="Solicitar Cita">
         </div>
     </form>
+    <?php echo $mensaje; ?>
     <h2 class="center">Mis Citas Planificadas</h2>
     <table>
         <tr>

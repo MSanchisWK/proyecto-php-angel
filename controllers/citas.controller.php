@@ -28,10 +28,10 @@ class CitasController {
     }
 
     public function actualizarCita($idCita, $idUsuario, $fecha, $motivo) {
-       
+        return $this->citasModel->updateCita($idCita, $idUsuario, $fecha, $motivo);
     }
 
     public function eliminarCita($idCita) {
-       
+        return $this->citasModel->deleteCita($idCita);
     }
 }

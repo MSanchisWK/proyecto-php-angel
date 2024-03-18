@@ -1,7 +1,6 @@
 <?php 
 session_start();
 if(isset($_GET['cs'])){
-    session_start();
     session_unset();
     session_destroy();
     header("location:index.php");

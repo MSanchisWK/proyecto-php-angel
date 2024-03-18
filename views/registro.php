@@ -1,5 +1,4 @@
 <?php 
-require_once "../connection.php";   
 require_once '../controllers/users.controller.php';
 $usuariosController = new UsuariosController();
 $mensaje = '';
